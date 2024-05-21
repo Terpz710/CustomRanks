@@ -40,6 +40,7 @@ class RanksManager {
     public function setRank(Player $player, string $rank) {
         $this->ranksData[$player->getName()] = $rank;
         $this->saveRanks();
+        $this->plugin->updatePlayerDisplayName($player);
     }
 
     public function getRank(Player $player): ?string {
@@ -50,6 +51,7 @@ class RanksManager {
         if (isset($this->ranksData[$player->getName()])) {
             unset($this->ranksData[$player->getName()]);
             $this->saveRanks();
+            $this->plugin->updatePlayerDisplayName($player);
         }
     }
 
@@ -67,5 +69,9 @@ class RanksManager {
 
     public function getDefaultRank(): ?string {
         return $this->defaultRank;
+    }
+
+    public function getRankDisplay(string $rank): ?string {
+        return $this->ranksConfig['ranks'][$rank]['rank_display'] ?? $rank;
     }
 }
