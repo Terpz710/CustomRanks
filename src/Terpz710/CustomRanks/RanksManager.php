@@ -6,6 +6,7 @@ namespace Terpz710\CustomRanks;
 
 use pocketmine\player\Player;
 use pocketmine\utils\Config;
+use pocketmine\permission\PermissionManager;
 
 use Terpz710\CustomRanks\Loader;
 
@@ -52,7 +53,7 @@ class RanksManager {
     }
 
     private function applyPermissions(Player $player, array $permissions) {
-        $permissionManager = $this->plugin->getServer()->getPluginManager()->getPermissionManager();
+        $permissionManager = PermissionManager::getInstance();
         foreach ($permissions as $permission) {
             $permissionInstance = $permissionManager->getPermission($permission);
             if ($permissionInstance !== null) {
@@ -81,7 +82,7 @@ class RanksManager {
    }
 
     private function removePermissions(Player $player, array $permissions) {
-        $permissionManager = $this->plugin->getServer()->getPluginManager()->getPermissionManager();
+        $permissionManager = PermissionManager::getInstance();
         foreach ($permissions as $permission) {
             $permissionInstance = $permissionManager->getPermission($permission);
             if ($permissionInstance !== null) {
