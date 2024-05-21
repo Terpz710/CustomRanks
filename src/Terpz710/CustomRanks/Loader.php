@@ -19,6 +19,7 @@ class Loader extends PluginBase implements Listener {
 
     private $ranksManager;
     private $messagesConfig;
+    private $rankCommandConfig;
 
     public function onEnable(): void {
         if (!is_dir($this->getDataFolder())) {
