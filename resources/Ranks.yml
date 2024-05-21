@@ -1,0 +1,33 @@
+# Made by Terpz710 :p
+
+default_rank: "starter"
+
+ranks:
+  starter:
+    rank_display: "Starter"
+    permissions:
+      - "example.permission1"
+      - "example.permission2"
+  member:
+    rank_display: "Member"
+    permissions:
+      - "example.permission3"
+  vip:
+    rank_display: "VIP"
+    permissions:
+      - "example.permission4"
+  admin:
+    rank_display: "Admin"
+    permissions:
+      - "example.permission5"
+  owner:
+    rank_display: "Owner"
+    permissions:
+      - "example.permission6"
+
+hierarchy:
+  - "starter"
+  - "member"
+  - "vip"
+  - "admin"
+  - "owner"
