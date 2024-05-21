@@ -1,0 +1,10 @@
+# Made by Terpz710 :p
+
+command-usage: "Usage: /rank <set|remove|check> <player> <rank>"
+player-not-found: "Player not found!"
+specify-rank: "You must specify a rank!"
+rank-not-found: "The rank {rank} does not exist!"
+rank-successfully-set: "Set the rank of {playerName} to {rank}!"
+rank-successfully-removed: "Removed {rank} from {playerName}!"
+player-current-rank: "{playerName}'s current rank is {currentRank}"
+invalid-subcommand: "Invalid action. Usage: /rank <set|remove|check> <player> <rank>"
