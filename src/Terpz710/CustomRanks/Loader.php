@@ -9,7 +9,7 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\utils\TextFormat as TF;
 
-use Terpz710\CustomRanks\RankCommand\RankCommand;
+use Terpz710\CustomRanks\RankCommand\RanksCommand;
 use Terpz710\CustomRanks\RanksManager;
 
 class Loader extends PluginBase implements Listener {
@@ -32,7 +32,7 @@ class Loader extends PluginBase implements Listener {
     }
 
     private function registerCommands() {
-        $this->getServer()->getCommandMap()->register("rank", new RankCommand($this));
+        $this->getServer()->getCommandMap()->register("rank", new RanksCommand($this));
     }
 
     public function onPlayerJoin(PlayerJoinEvent $event) {
