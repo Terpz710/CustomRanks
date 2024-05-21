@@ -30,7 +30,7 @@ class RanksCommand extends Command {
         }
 
         if (count($args) < 2) {
-            $sender->sendMessage(TF::RED . "Usage: /rank <set|remove|check> <player> <rank>");
+            $sender->sendMessage($this->plugin->getConfigMessages->get("command-usage"));
             return false;
         }
 
@@ -40,7 +40,7 @@ class RanksCommand extends Command {
 
         $player = $this->plugin->getServer()->getPlayerExact($playerName);
         if ($player === null) {
-            $sender->sendMessage(TF::RED . "Player not found!");
+            $sender->sendMessage($this->plugin->getConfigMessages->get("player-not-found"));
             return false;
         }
 
@@ -49,26 +49,26 @@ class RanksCommand extends Command {
         switch ($action) {
             case "set":
                 if ($rank === null) {
-                    $sender->sendMessage(TF::RED . "You must specify a rank!");
+                    $sender->sendMessage($this->plugin->getConfigMessages->get("specify-rank"));
                     return false;
                 }
                 if (!$ranksManager->rankExists($rank)) {
-                    $sender->sendMessage(TF::RED . "The rank \"" . $rank . "\" does not exist!");
+                    $sender->sendMessage(str_replace("{rank}", $rank, $this->plugin->getConfigMessages->get("rank-not-found")));
                     return false;
                 }
                 $ranksManager->setRank($player, $rank);
-                $sender->sendMessage(TF::GREEN . "Set rank of " . $playerName . " to " . $rank);
+                $sender->sendMessage(str_replace(["{playerName}", "{rank}"], [$playerName, $rank], $this->plugin->getConfigMessages->get("rank-successfully-set")));
                 break;
             case "remove":
-                $ranksManager->removeRank($player);
-                $sender->sendMessage(TF::GREEN . "Removed rank of " . $playerName);
+                $ranksManager->removeRank($player, $rank);
+                $sender->sendMessage(str_replace(["{playerName}", "{rank}"], [$playerName, $rank], $this->plugin->getConfigMessages->get("rank-successfully-removed"));
                 break;
             case "check":
                 $currentRank = $ranksManager->getRank($player);
-                $sender->sendMessage(TF::GREEN . $playerName . "'s current rank is " . $currentRank);
+                $sender->sendMessage(str_replace(["{playerName}", "{currentRank}"], [$playerName, $currentRank], $this->plugin->getConfigMessages->get("player-current-rank"));
                 break;
             default:
-                $sender->sendMessage(TF::RED . "Invalid action. Usage: /rank <set|remove|check> <player> <rank>");
+                $sender->sendMessage($this->plugin->getConfigMessages->get("invalid-subcommand"));
                 break;
         }
         return true;
