@@ -10,7 +10,7 @@ use pocketmine\player\Player;
 use pocketmine\player\chat\LegacyRawChatFormatter;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerChatEvent;
-use pocketmine\utils\TextFormat as TF;
+use pocketmine\utils\Config;
 
 use Terpz710\CustomRanks\RankCommand\RanksCommand;
 use Terpz710\CustomRanks\RanksManager;
@@ -18,6 +18,7 @@ use Terpz710\CustomRanks\RanksManager;
 class Loader extends PluginBase implements Listener {
 
     private $ranksManager;
+    private $messagesConfig;
 
     public function onEnable(): void {
         if (!is_dir($this->getDataFolder())) {
