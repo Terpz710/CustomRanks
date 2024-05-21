@@ -7,7 +7,6 @@ namespace Terpz710\CustomRanks\RankCommand;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
-use pocketmine\utils\TextFormat as TF;
 
 use Terpz710\CustomRanks\Loader;
 
