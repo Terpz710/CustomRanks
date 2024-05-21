@@ -7,6 +7,7 @@ namespace Terpz710\CustomRanks;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\utils\TextFormat as TF;
 
 use Terpz710\CustomRanks\RankCommand\RanksCommand;
@@ -16,7 +17,7 @@ class Loader extends PluginBase implements Listener {
 
     private $ranksManager;
 
-    public function onEnable(): void{
+    public function onEnable(): void {
         if (!is_dir($this->getDataFolder())) {
             mkdir($this->getDataFolder());
         }
@@ -40,7 +41,21 @@ class Loader extends PluginBase implements Listener {
         $ranksManager = $this->getRanksManager();
         if (!$ranksManager->getRank($player)) {
             $ranksManager->setRank($player, $ranksManager->getDefaultRank());
-            $player->sendMessage(TF::GREEN . "Your rank has been set to " . $ranksManager->getDefaultRank() . "§a!");
         }
+        $this->updatePlayerDisplayName($player);
+        $player->sendMessage(TF::GREEN . "Your rank has been set to " . $ranksManager->getDefaultRank() . "§a!");
+    }
+
+    public function onPlayerChat(PlayerChatEvent $event) {
+        $player = $event->getPlayer();
+        $rank = $this->ranksManager->getRank($player);
+        $rankDisplay = $rank ? $this->ranksManager->getRankDisplay($rank) : "";
+        $event->setFormat(TF::GREEN . "[" . $rankDisplay . "] " . $player->getName() . ": " . $event->getMessage());
+    }
+
+    public function updatePlayerDisplayName(Player $player): void {
+        $rank = $this->ranksManager->getRank($player);
+        $rankDisplay = $rank ? $this->ranksManager->getRankDisplay($rank) : "";
+        $player->setDisplayName(TF::GREEN . "[" . $rankDisplay . "] " . $player->getName());
     }
 }
