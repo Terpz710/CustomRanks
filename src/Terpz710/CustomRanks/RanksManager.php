@@ -66,10 +66,27 @@ class RanksManager {
     }
 
     public function removeRank(Player $player) {
-        if (isset($this->ranksData[$player->getName()])) {
-            unset($this->ranksData[$player->getName()]);
+        $playerName = $player->getName();
+        if (isset($this->ranksData[$playerName])) {
+            $removedRank = $this->ranksData[$playerName];
+            unset($this->ranksData[$playerName]);
             $this->saveRanks();
+        
+            $permissions = $this->getRankPermissions($removedRank);
+            if ($permissions !== null) {
+                $this->removePermissions($player, $permissions);
+            }
             $this->plugin->updatePlayerDisplayName($player);
+       }
+   }
+
+    private function removePermissions(Player $player, array $permissions) {
+        $permissionManager = $this->plugin->getServer()->getPluginManager()->getPermissionManager();
+        foreach ($permissions as $permission) {
+            $permissionInstance = $permissionManager->getPermission($permission);
+            if ($permissionInstance !== null) {
+                $player->removeAttachment($permissionInstance);
+            }
         }
     }
 
