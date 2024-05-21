@@ -1,0 +1,5 @@
+# Made by Terpz710 :p
+
+command: "rank"
+command-description: "Set or Remove a players rank"
+command-aliases: ["ranks", "r", "cr"]
