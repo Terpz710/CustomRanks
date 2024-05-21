@@ -37,7 +37,7 @@ class Loader extends PluginBase implements Listener {
         return $this->ranksManager;
     }
 
-    public function getConfigMessage() {
+    public function getConfigMessages() {
         return $this->messagesConfig;
     }
 
