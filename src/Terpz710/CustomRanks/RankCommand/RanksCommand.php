@@ -16,11 +16,11 @@ class RanksCommand extends Command {
     private $plugin;
 
     public function __construct(Loader $plugin) {
+        $this->plugin = $plugin;
         parent::__construct($this-plugin->getConfig()->get("command"));
         $this->setDescription($this-plugin->getConfig()->get("command-description"));
         $this->setAliases($this-plugin->getConfig()->get("command-aliases"));
         $this->setPermission("customranks.cmd");
-        $this->plugin = $plugin;
     }
 
     public function execute(CommandSender $sender, string $label, array $args) {
