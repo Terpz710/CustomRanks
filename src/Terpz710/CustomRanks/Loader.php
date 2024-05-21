@@ -9,7 +9,7 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\utils\TextFormat as TF;
 
-use Terpz710\CustomRanks\Command\RankCommand;
+use Terpz710\CustomRanks\RankCommand\RankCommand;
 use Terpz710\CustomRanks\RanksManager;
 
 class Loader extends PluginBase implements Listener {
