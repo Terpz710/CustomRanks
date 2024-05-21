@@ -18,7 +18,7 @@ class RanksCommand extends Command {
     public function __construct(Loader $plugin) {
         parent::__construct($this->plugin->getConfig()->get("command"));
         $this->setDescription($this->plugin->getConfig()->get("command-description"));
-        $this->setAliases($this-plugin->getConfig()->get("command-aliases"));
+        $this->setAliases($this->plugin->getConfig()->get("command-aliases"));
         $this->setPermission("customranks.cmd");
         $this->plugin = $plugin;
     }
