@@ -52,6 +52,10 @@ class RanksCommand extends Command {
                     $sender->sendMessage(TF::RED . "You must specify a rank!");
                     return false;
                 }
+                if (!$ranksManager->rankExists($rank)) {
+                    $sender->sendMessage(TF::RED . "The rank \"" . $rank . "\" does not exist!");
+                    return false;
+                }
                 $ranksManager->setRank($player, $rank);
                 $sender->sendMessage(TF::GREEN . "Set rank of " . $playerName . " to " . $rank);
                 break;
@@ -67,7 +71,6 @@ class RanksCommand extends Command {
                 $sender->sendMessage(TF::RED . "Invalid action. Usage: /rank <set|remove|check> <player> <rank>");
                 break;
         }
-
         return true;
     }
 }
