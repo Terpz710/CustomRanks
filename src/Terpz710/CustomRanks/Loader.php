@@ -24,7 +24,9 @@ class Loader extends PluginBase implements Listener {
             mkdir($this->getDataFolder());
         }
 
+        $this->saveResource("Messages.yml");
         $this->saveResource("Ranks.yml");
+        $this->messagesConfig = new Config($this->getDataFolder() . "Messages.yml", Config::YAML);
         $this->ranksManager = new RanksManager($this);
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->registerCommands();
@@ -32,6 +34,10 @@ class Loader extends PluginBase implements Listener {
 
     public function getRanksManager(): RanksManager {
         return $this->ranksManager;
+    }
+
+    public function getConfigMessage() {
+        return $this->messagesConfig;
     }
 
     private function registerCommands() {
