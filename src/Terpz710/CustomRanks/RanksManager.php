@@ -74,4 +74,12 @@ class RanksManager {
     public function getRankDisplay(string $rank): ?string {
         return $this->ranksConfig['ranks'][$rank]['rank_display'] ?? $rank;
     }
+
+    public function getRankTag(string $rank): ?string {
+        return $this->ranksConfig['ranks'][$rank]['rank_player_tag'] ?? null;
+    }
+
+    public function getChatFormat(string $rank): ?string {
+        return $this->ranksConfig['ranks'][$rank]['rank_chat_format'] ?? null;
+    }
 }
