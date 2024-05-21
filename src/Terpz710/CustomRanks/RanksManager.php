@@ -53,6 +53,10 @@ class RanksManager {
         }
     }
 
+    public function rankExists(string $rank): bool {
+        return isset($this->ranksConfig['ranks'][$rank]);
+    }
+
     public function rankHierarchy(): array {
         return $this->ranksConfig['hierarchy'] ?? [];
     }
