@@ -51,7 +51,7 @@ class Loader extends PluginBase implements Listener {
         $player = $event->getPlayer();
         $rank = $this->ranksManager->getRank($player);
         $rankDisplay = $rank ? $this->ranksManager->getRankDisplay($rank) : "";
-        $event->setFormatter(TF::GREEN . "[" . $rankDisplay . "] " . $player->getName() . ": " . $event->getMessage());
+        $event->setFormatter(new LegacyRawChatFormatter(TF::GREEN . "[" . $rankDisplay . "] " . $player->getName() . ": " . $event->getMessage()));
     }
 
     public function updatePlayerDisplayName(Player $player): void {
