@@ -38,9 +38,27 @@ class RanksManager {
     }
 
     public function setRank(Player $player, string $rank) {
+        if (!$this->rankExists($rank)) {
+            return;
+        }
         $this->ranksData[$player->getName()] = $rank;
         $this->saveRanks();
+        
+        $permissions = $this->getRankPermissions($rank);
+        if ($permissions !== null) {
+            $this->applyPermissions($player, $permissions);
+        }
         $this->plugin->updatePlayerDisplayName($player);
+    }
+
+    private function applyPermissions(Player $player, array $permissions) {
+        $permissionManager = $this->plugin->getServer()->getPluginManager()->getPermissionManager();
+        foreach ($permissions as $permission) {
+            $permissionInstance = $permissionManager->getPermission($permission);
+            if ($permissionInstance !== null) {
+                $player->addAttachment($this->plugin, $permission, true);
+            }
+        }
     }
 
     public function getRank(Player $player): ?string {
