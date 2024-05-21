@@ -25,6 +25,7 @@ class Loader extends PluginBase implements Listener {
             mkdir($this->getDataFolder());
         }
 
+        $this->saveDefaultConfig();
         $this->saveResource("Messages.yml");
         $this->saveResource("Ranks.yml");
         $this->messagesConfig = new Config($this->getDataFolder() . "Messages.yml", Config::YAML);
