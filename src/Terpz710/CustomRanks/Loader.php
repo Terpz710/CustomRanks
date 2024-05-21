@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Terpz710\CustomRanks;
 
-use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
+use pocketmine\player\Player;
+use pocketmine\player\chat\LegacyRawChatFormatter;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\utils\TextFormat as TF;
