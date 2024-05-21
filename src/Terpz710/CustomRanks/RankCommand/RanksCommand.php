@@ -61,11 +61,11 @@ class RanksCommand extends Command {
                 break;
             case "remove":
                 $ranksManager->removeRank($player, $rank);
-                $sender->sendMessage(str_replace(["{playerName}", "{rank}"], [$playerName, $rank], $this->plugin->getConfigMessages->get("rank-successfully-removed"));
+                $sender->sendMessage(str_replace(["{playerName}", "{rank}"], [$playerName, $rank], $this->plugin->getConfigMessages->get("rank-successfully-removed")));
                 break;
             case "check":
                 $currentRank = $ranksManager->getRank($player);
-                $sender->sendMessage(str_replace(["{playerName}", "{currentRank}"], [$playerName, $currentRank], $this->plugin->getConfigMessages->get("player-current-rank"));
+                $sender->sendMessage(str_replace(["{playerName}", "{currentRank}"], [$playerName, $currentRank], $this->plugin->getConfigMessages->get("player-current-rank")));
                 break;
             default:
                 $sender->sendMessage($this->plugin->getConfigMessages->get("invalid-subcommand"));
