@@ -11,7 +11,7 @@ use pocketmine\utils\TextFormat as TF;
 
 use Terpz710\CustomRanks\Loader;
 
-class RankCommand extends Command {
+class RanksCommand extends Command {
 
     private $plugin;
 
