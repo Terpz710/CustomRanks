@@ -16,10 +16,9 @@ class RanksCommand extends Command {
     private $plugin;
 
     public function __construct(Loader $plugin) {
-        parent::__construct("rank");
-        $this->setLabel("rank");
-        $this->setDescription("Set or Remove a players rank");
-        $this->setAliases(["r", "cr", "ranks"]);
+        parent::__construct($this-plugin->getConfig()->get("command"));
+        $this->setDescription($this-plugin->getConfig()->get("command-description"));
+        $this->setAliases($this-plugin->getConfig()->get("command-aliases"));
         $this->setPermission("customranks.cmd");
         $this->plugin = $plugin;
     }
