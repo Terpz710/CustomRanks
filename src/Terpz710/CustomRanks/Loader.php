@@ -45,19 +45,20 @@ class Loader extends PluginBase implements Listener {
             $ranksManager->setRank($player, $ranksManager->getDefaultRank());
         }
         $this->updatePlayerDisplayName($player);
-        $player->sendMessage(TF::GREEN . "Your rank has been set to " . $ranksManager->getDefaultRank() . "§a!");
     }
 
     public function onPlayerChat(PlayerChatEvent $event) {
         $player = $event->getPlayer();
         $rank = $this->ranksManager->getRank($player);
-        $rankDisplay = $rank ? $this->ranksManager->getRankDisplay($rank) : "";
-        $event->setFormatter(new LegacyRawChatFormatter(TF::GREEN . "[" . $rankDisplay . "] " . $player->getName() . ": " . $event->getMessage()));
+        $rankChatFormat = $rank ? $this->ranksManager->getChatFormat($rank) : "{playerName}: {message}";
+        $formattedMessage = str_replace(["{playerName}", "{message}"], [$player->getName(), $event->getMessage()], $rankChatFormat);
+        $event->setFormatter(new LegacyRawChatFormatter($formattedMessage));
     }
 
     public function updatePlayerDisplayName(Player $player): void {
         $rank = $this->ranksManager->getRank($player);
-        $rankDisplay = $rank ? $this->ranksManager->getRankDisplay($rank) : "";
-        $player->setDisplayName(TF::GREEN . "[" . $rankDisplay . "] " . $player->getName());
+        $rankTag = $rank ? $this->ranksManager->getRankTag($rank) : "{playerName}";
+        $displayName = str_replace("{playerName}", $player->getName(), $rankTag);
+        $player->setDisplayName($displayName);
     }
 }
